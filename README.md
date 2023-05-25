@@ -19,3 +19,5 @@
 <code>server/database/seeders</code>
 
 <h2>Hosted using Heroku</h2>
+<p>URL for server crud api</p>
+<code>https://mighty-ocean-88528.herokuapp.com</code>
