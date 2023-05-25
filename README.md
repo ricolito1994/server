@@ -1,5 +1,5 @@
 <h1>Growmodo Programming Challenge</h1>
-<h2>Server Side (Laravel/PHP)</h2>
+<p>Server Side (Laravel/PHP)</p>
 
 <h1>Download Laravel Using Composer</h1>
 <code>composer global require laravel/installer</code>
