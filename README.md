@@ -7,6 +7,8 @@
 <p>Create exam database on your apache server</p>
 
 <h2>RUN Migration</h2>
+<p>**Create exam database first in your MySQL server</p>
+
 <code>php artisan migrate</code>
 <p>To create table user</p>
 <code>server/database/migrations</code>
