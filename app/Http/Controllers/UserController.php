@@ -15,7 +15,7 @@ class UserController extends Controller
     {   
         try {
             if ($id=='all') {
-                $res = User::query()->whereNull('deleted_at')->get();
+                $res = User::query()->whereNull('deleted_at')->orderBy('id', 'desc')->get();
             } else {
                 $res = User::whereNull('deleted_at')->findOrFail($id);
             }
@@ -87,6 +87,9 @@ class UserController extends Controller
                 'email' => $req['email'],
                 'username' => $req['username']
             ];
+
+            $userData = [];
+
             if ($req['method'] !== 'create') {
                 $errmsg = [];
                 $email = User::where ([ ["email", $req['email']] ])->first();
@@ -102,12 +105,16 @@ class UserController extends Controller
 
                 if (count($errmsg) > 0) return response()->json(['errors' => $errmsg], 422);
 
-                User::where('id', $req['method'])->update($registerData);
-            } else {
-                User::updateOrCreate ($conditions, $registerData);
+                //$userData = User::where('id', $req['method'])->update($registerData);
+                $conditions = [
+                    'id' => $req['method'],
+                ];
+
             }
+
+            $userData = User::updateOrCreate ($conditions, $registerData);
             
-            return response(['res' => $req], 200);
+            return response(['res' => $userData], 200);
 
         } catch (\Exception $e) {
             return response(['err' => $e->getMessage()], 400);
